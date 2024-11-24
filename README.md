@@ -1,2 +1,1 @@
-backend of the given assignment
-language used: Typescript
+learning nextjs
