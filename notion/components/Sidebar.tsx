@@ -19,6 +19,7 @@ import {
 import { MenuIcon } from "lucide-react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useEffect, useState } from "react";
+import SidebarOption from "./SidebarOption";
 
 interface RoomDocument extends DocumentData {
   createdAt: string;
