@@ -95,6 +95,16 @@ function Sidebar() {
           </>
         )}
       </div>
+
+        {/* Shared with me */}
+        {groupedData.editor.length > 0 && (
+          <>
+            {groupedData.editor.map((doc) => (
+              <SidebarOption key={doc.id} id={doc.id} href={`/doc/${doc.id}`} />
+            ))}
+          </>
+        )}
+
     </>
   );
 
