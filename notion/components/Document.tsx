@@ -46,8 +46,7 @@ function Document({id}: {id: string}) {
       </div>
       <div>
         {/* manageUsers */}
-{/* 
-        avatars */}
+        {/* avatars */}
       </div>
 
       {/* Collaborative editor */}
