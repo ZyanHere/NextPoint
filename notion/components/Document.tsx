@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useTransition } from "react"
+import { FormEvent, useEffect, useState, useTransition } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button";
 import { doc, updateDoc } from "firebase/firestore";
