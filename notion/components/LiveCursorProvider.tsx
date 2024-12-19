@@ -2,6 +2,7 @@
 
 import { useMyPresence, useOthers } from "@liveblocks/react/suspense";
 import { PointerEvent, ReactNode } from "react";
+import FollowPointer from "./FollowPointer";
 
 function LiveCursorProvider({ children }: { children: ReactNode }) {
   const [myPresence, updateMyPresence] = useMyPresence();
