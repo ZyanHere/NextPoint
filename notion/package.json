@@ -14,6 +14,7 @@
     "@blocknote/react": "^0.21.0",
     "@clerk/nextjs": "^6.5.0",
     "@liveblocks/client": "^2.14.0",
+    "@liveblocks/node": "^2.15.0",
     "@liveblocks/react": "^2.14.0",
     "@liveblocks/yjs": "^2.14.0",
     "@radix-ui/react-dialog": "^1.1.2",
