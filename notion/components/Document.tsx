@@ -8,6 +8,7 @@ import { db } from "@/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import Editor from "./Editor";
 import useOwner from "@/lib/useOwner";
+import DeleteDocument from "./DeleteDocument";
 
 function Document({id}: {id: string}) {
 
@@ -45,6 +46,16 @@ function Document({id}: {id: string}) {
           </Button>
 
           {/* if */}
+          {isOwner && (
+            <>
+            {/* invite user */}
+
+            {/* delete doc */}
+              <DeleteDocument/>
+
+              <p>I own this</p>
+            </>
+          )}
         </form>
       </div>
       <div>
