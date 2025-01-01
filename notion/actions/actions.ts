@@ -32,11 +32,33 @@ export async function createNewDocument() {
   return { docId: docRef.id };
 }
 
+export async function InviteUserToDocument(roomId: string, email: string) {
+  auth().protect();
+
+  try {
+    await adminDb
+      .collection("users")
+      .doc(email)
+      .collection("rooms")
+      .doc(roomId)
+      .set({
+        userId: email,
+        role: "editor",
+        createdAt: new Date(),
+        roomId,
+      });
+
+      return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false };
+  }
+}
+
 export async function deleteDocument(roomId: string) {
   auth().protect();
 
   try {
-
     //delete doc ref itself
     await adminDb.collection("documents").doc(roomId).delete();
 
@@ -50,14 +72,13 @@ export async function deleteDocument(roomId: string) {
     //delete toom ref in user's collection
     query.docs.forEach((doc) => {
       batch.delete(doc.ref);
-    })
+    });
 
     await batch.commit();
 
     //delete room in liveblocks
     await liveblocks.deleteRoom(roomId);
     return { success: true };
-
   } catch (error) {
     console.error(error);
     return { success: false };

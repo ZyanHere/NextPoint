@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { Input } from "./ui/input";
+import { InviteUserToDocument } from "@/actions/actions";
 
 function InviteUser() {
   const [isOpen, setIsOpen] = useState(false);
