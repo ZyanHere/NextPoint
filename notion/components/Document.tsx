@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { FormEvent, useEffect, useState, useTransition } from "react"
-import { Input } from "./ui/input"
+import { FormEvent, useEffect, useState, useTransition } from "react";
+import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/firebase";
@@ -10,9 +10,9 @@ import Editor from "./Editor";
 import useOwner from "@/lib/useOwner";
 import DeleteDocument from "./DeleteDocument";
 import InviteUser from "./InviteUser";
+import ManageUsers from "./ManageUsers";
 
-function Document({id}: {id: string}) {
-
+function Document({ id }: { id: string }) {
   const [data, loading, error] = useDocumentData(doc(db, "document", id));
   const [input, setInput] = useState("");
   const [isUpdating, startTransition] = useTransition();
@@ -22,26 +22,26 @@ function Document({id}: {id: string}) {
     if (data) {
       setInput(data.title);
     }
-  }, [data])
+  }, [data]);
 
   const updateTitle = (e: FormEvent) => {
     e.preventDefault();
 
-    if (input.trim()){
+    if (input.trim()) {
       startTransition(async () => {
         await updateDoc(doc(db, "documents", id), {
           title: input,
-        })
-      })
+        });
+      });
     }
-  }
+  };
 
   return (
-    <div className=" flex-1 h-full bg-white p-5"> 
+    <div className=" flex-1 h-full bg-white p-5">
       <div className=" flex max-w-6xl mx-auto justify-between pb-5">
         <form className=" flex flex-1 space-x-2" onSubmit={updateTitle}>
           {/* update title */}
-          <Input value={input} onChange={(e)=> setInput(e.target.value)}/>
+          <Input value={input} onChange={(e) => setInput(e.target.value)} />
           <Button disabled={isUpdating} type="submit">
             {isUpdating ? "Updating" : "Update"}
           </Button>
@@ -49,26 +49,27 @@ function Document({id}: {id: string}) {
           {/* if */}
           {isOwner && (
             <>
-            {/* invite user */}
-            <InviteUser/>
+              {/* invite user */}
+              <InviteUser />
 
-            {/* delete doc */}
-              <DeleteDocument/>
+              {/* delete doc */}
+              <DeleteDocument />
             </>
           )}
         </form>
       </div>
-      <div>
+      <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
         {/* manageUsers */}
+        <ManageUsers/>
         {/* avatars */}
       </div>
 
       <hr className="pb-10" />
 
       {/* Collaborative editor */}
-      <Editor/>
+      <Editor />
     </div>
-  )
+  );
 }
 
-export default Document
+export default Document;
