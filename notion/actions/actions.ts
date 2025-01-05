@@ -84,3 +84,22 @@ export async function deleteDocument(roomId: string) {
     return { success: false };
   }
 }
+
+
+export async function removeUserFromDocument(roomId: string, email: string) {
+  auth().protect();
+
+  try {
+    await adminDb
+      .collection("users")
+      .doc(email)
+      .collection("rooms")
+      .doc(roomId)
+      .delete();
+
+      return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false };
+  }
+}

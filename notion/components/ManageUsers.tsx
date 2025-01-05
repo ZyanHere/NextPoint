@@ -8,16 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FormEvent, useState, useTransition } from "react";
+import {  useState, useTransition } from "react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { InviteUserToDocument } from "@/actions/actions";
 import { useUser } from "@clerk/nextjs";
 import useOwner from "@/lib/useOwner";
 import { useRoom } from "@liveblocks/react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collectionGroup, query, where } from "firebase/firestore";
 import { db } from "@/firebase";
+import { removeUserFromDocument } from "@/actions/actions";
 
 function ManageUsers() {
   const { user } = useUser();
