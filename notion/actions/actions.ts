@@ -7,7 +7,7 @@ import { auth } from "@clerk/nextjs/server";
 // this server action will send the user to login if he's logged out and tries to create new doc
 
 export async function createNewDocument() {
-  auth().protect();
+  auth.protect();
 
   const { sessionClaims } = await auth(); //sessionclaims are from clerk
 
@@ -33,7 +33,7 @@ export async function createNewDocument() {
 }
 
 export async function InviteUserToDocument(roomId: string, email: string) {
-  auth().protect();
+  auth.protect();
 
   try {
     await adminDb
@@ -56,7 +56,7 @@ export async function InviteUserToDocument(roomId: string, email: string) {
 }
 
 export async function deleteDocument(roomId: string) {
-  auth().protect();
+  auth.protect();
 
   try {
     //delete doc ref itself
@@ -87,7 +87,7 @@ export async function deleteDocument(roomId: string) {
 
 
 export async function removeUserFromDocument(roomId: string, email: string) {
-  auth().protect();
+  auth.protect();
 
   try {
     await adminDb
