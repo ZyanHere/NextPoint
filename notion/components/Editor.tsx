@@ -13,6 +13,7 @@ import { BlockNoteEditor } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import stringToColor from "@/lib/stringToColor";
 import TranslateDocument from "./TranslateDocument";
+import ChatToDocument from "./ChatToDocument";
 
 
 
@@ -79,6 +80,7 @@ function Editor() {
         <TranslateDocument doc={doc}/>
 
         {/* chat to doc  */}
+        <ChatToDocument doc={doc}/>
 
         {/* dark mode */}
         <Button className={style} onClick={() => setDarkMode(!darkMode)}>

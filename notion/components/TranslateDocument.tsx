@@ -134,7 +134,7 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
           </Select>
 
           <Button type="submit" disabled={!language || isPending}>
-            {isPending ? " Translating..." : "Translated"}
+            {isPending ? " Translating..." : "Translate"}
           </Button>
         </form>
       </DialogContent>
