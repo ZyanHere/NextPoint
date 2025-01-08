@@ -9,9 +9,14 @@ import { auth } from "@clerk/nextjs/server";
 export async function createNewDocument() {
   auth.protect();
 
-  const { sessionClaims } = await auth(); //sessionclaims are from clerk
+  const { sessionClaims } = await auth();
 
-  //creating new document
+  // Ensure sessionClaims.email is defined
+  if (!sessionClaims?.email) {
+    throw new Error("User email is undefined. Cannot create a new document.");
+  }
+
+  // Creating new document
   const docCollectionRef = adminDb.collection("documents");
   const docRef = await docCollectionRef.add({
     title: "New doc",
@@ -19,11 +24,11 @@ export async function createNewDocument() {
 
   await adminDb
     .collection("users")
-    .doc(sessionClaims?.email)
+    .doc(sessionClaims.email) // Now guaranteed to be a string
     .collection("rooms")
     .doc(docRef.id)
     .set({
-      userId: sessionClaims?.email,
+      userId: sessionClaims.email,
       role: "owner",
       createdAt: new Date(),
       roomId: docRef.id,

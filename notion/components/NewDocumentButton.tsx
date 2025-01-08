@@ -10,7 +10,7 @@ import { createNewDocument } from '@/actions/actions';
 function NewDocumentButton() {
 
   const [isPending, startTransition] = useTransition();//in case of any async behaviour, which is not media, we can wrap it in this hook
-  const router = useRouter 
+  const router = useRouter();
 
   const handleCreateNewDocument = () => {
     startTransition(async () => {
